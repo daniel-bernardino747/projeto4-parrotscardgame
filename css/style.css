@@ -54,3 +54,10 @@ img {
 .back-card {
     display: none;
 }
+
+@media (max-width: 509px) {
+    h1 {
+        font-size: 36px;
+        line-height: 42px;
+    }
+}
