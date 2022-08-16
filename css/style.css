@@ -8,6 +8,7 @@ body {
 
     background: #EEF9BF;
     color: #75B79E;
+    box-sizing: border-box;
 
     flex-direction: column;
 }
