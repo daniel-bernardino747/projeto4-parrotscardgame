@@ -12,6 +12,15 @@ body {
     flex-direction: column;
 }
 
+body, .screen, .card {
+    display: flex;
+    justify-content: center;
+}
+
+body, .card {
+    align-items: center;
+}
+
 h1, .screen {
     width: 90%;
 }
@@ -29,12 +38,13 @@ img {
 }
 
 .screen {
-    background-color: red;
+    flex-wrap: wrap;
 }
 
 .card {
     width: 117px;
     height: 146px;
+    margin: 17px;
 
     background: #A7E9AF;
     border: 1px solid #99CEA8;
@@ -43,10 +53,4 @@ img {
 
 .back-card {
     display: none;
-}
-
-.flex-all-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
