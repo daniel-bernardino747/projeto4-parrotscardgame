@@ -1,4 +1,0 @@
-.card:active {
-    transform: scale(0.90);
-    transition: transform 0.3s;
-}

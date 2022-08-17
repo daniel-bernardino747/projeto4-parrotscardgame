@@ -43,6 +43,7 @@ img {
 }
 
 .card {
+    position: relative;
     width: 117px;
     height: 146px;
     margin: 17px;
@@ -50,10 +51,30 @@ img {
     background: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
+
+    transform: scale(1);
+    perspective: 500px;
 }
 
-.back-card {
+.card:active {
+    transform: scale(0.90);
+    transition: transform 0.3s;
+}
+
+.front-card, .back-card {
+    position: absolute;    
+}
+
+.card.flip, .back-card {
+    transform: rotateY(180deg);
+}
+
+.back-card, .hidden {
     display: none;
+}
+
+.unhidden {
+    display: initial;
 }
 
 @media (max-width: 509px) {
