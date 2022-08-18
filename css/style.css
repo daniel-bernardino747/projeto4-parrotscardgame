@@ -56,10 +56,10 @@ img {
        perspective: 500px; */
 }
 
-.card:active {
+/* .card:active {
     transform: scale(0.90);
     transition: transform 0.3s;
-}
+} */
 
 .front-card, .back-card {
     position: absolute;
@@ -88,14 +88,6 @@ img {
   
 .back-card.turned {
     transform: rotateY(0deg);
-}
-
-.hidden {
-    display: none;
-}
-
-.unhidden {
-    display: initial;
 }
 
 .disabled {

@@ -1,8 +1,10 @@
 const cards = document.querySelectorAll('.card');
+const box = document.querySelector('.screen');
 let contadorCardClick = 0;
 let pairCard = [];
 let cardList;
 
+startGame();
 
 function startGame() {
 
@@ -14,10 +16,17 @@ function playGame() {
 
     let qtdeCartas = prompt('Número de Cartas: (min. 4 / max. 14)');
 
-    if (qtdeCartas%2 === 0 && 4<=qtdeCartas && qtdeCartas<=14) {
-        alert('passou');
+    if (qtdeCartas%2===0 && 4<=qtdeCartas && qtdeCartas<=14) {
         createCards(qtdeCartas);
-        sortedCards();
+
+        cardList.sort(comparador);
+
+        function comparador() {
+            return Math.random() - 0.5;
+        }
+
+        showInHTML();
+
     } else {
         alert('Por favor, só números pares entre 4 e 14.');
         playGame();
@@ -31,7 +40,7 @@ function createCards(Number) {
     for (i=0; i < Number/2; i++) {
         const divCard = document.createElement('div');
         divCard.className = 'card';
-        divCard.setAttribute(`data-card', 'card${i}`);
+        divCard.setAttribute(`card`, `card${i}`);
         divCard.setAttribute('onclick','flipCard(this)');
 
         const imgFront = document.createElement('img');
@@ -52,7 +61,7 @@ function createCards(Number) {
     for (i=0; i < Number/2; i++) {
         const divCard = document.createElement('div');
         divCard.className = 'card';
-        divCard.setAttribute(`data-card', 'card${i}`);
+        divCard.setAttribute(`data-card`, `card${i}`);
         divCard.setAttribute('onclick','flipCard(this)');
 
         const imgFront = document.createElement('img');
@@ -64,17 +73,13 @@ function createCards(Number) {
         imgBack.className = 'front-card';
         imgBack.src = `./src/${i}.gif`;
 
-        divCard.appendChild(imgFront);
         divCard.appendChild(imgBack);
+        divCard.appendChild(imgFront);
 
         secondsCards[i] = divCard;
     }
-    
-    cardList = firstsCards.concat(secondsCards);
-}
 
-function sortedCards() {
-    return;
+    cardList = firstsCards.concat(secondsCards);
 }
 
 function flipCard(blabla) {
@@ -122,3 +127,11 @@ function checkPair() {
           }, 1000);
     }
 }
+
+function showInHTML() {
+    for (i=0; i<cardList.length; i++) {
+        box.appendChild(cardList[i]);
+    }
+}
+
+console.log(box)
