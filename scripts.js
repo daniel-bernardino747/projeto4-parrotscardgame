@@ -2,7 +2,8 @@ const cards = document.querySelectorAll('.card');
 const box = document.querySelector('.screen');
 let contadorCardClick = 0;
 let pairCard = [];
-let cardList, qtdeCartas;
+let cardList;
+let qtdeCartas = 0;
 let toWinGame = 0;
 startGame();
 
@@ -15,9 +16,10 @@ function startGame() {
 function playGame() {
 
     qtdeCartas = Number(prompt('Número de Cartas: (min. 4 / max. 14)'));
-
+    
     if (qtdeCartas % 2 === 0 && 4 <= qtdeCartas && qtdeCartas <= 14) {
         createCards(qtdeCartas);
+
 
         cardList.sort(comparador);
 
@@ -53,6 +55,9 @@ function playAgain() {
         answer === 's'
         ) {
             NumberCards = cardList.length
+
+            contadorCardClick = 0;
+            toWinGame = 0;
 
             for (i=0; i < NumberCards; i++) {
                 const toRemove = document.querySelector('.card');
