@@ -9,7 +9,6 @@ body {
     background: #EEF9BF;
     color: #75B79E;
     box-sizing: border-box;
-
     flex-direction: column;
 }
 
@@ -51,23 +50,13 @@ img {
     background: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
-
-    /* transform: scale(1);
-       perspective: 500px; */
 }
-
-/* .card:active {
-    transform: scale(0.90);
-    transition: transform 0.3s;
-} */
 
 .front-card, .back-card {
     position: absolute;
-
     backface-visibility: hidden; 
     transform-style: preserve-3d;
     transition: all 0.5s;
-  
 }
 
 .card.flip {
@@ -76,7 +65,7 @@ img {
 
 .back-card {
     transform: rotateY(-180deg);
-  }
+}
   
 .front-card {
     transform: rotateY(0deg);

@@ -1,10 +1,13 @@
 const cards = document.querySelectorAll('.card');
 const box = document.querySelector('.screen');
+
 let contadorCardClick = 0;
-let pairCard = [];
-let cardList;
 let qtdeCartas = 0;
 let toWinGame = 0;
+
+let pairCard = [];
+let cardList;
+
 startGame();
 
 function startGame() {
@@ -16,11 +19,10 @@ function startGame() {
 function playGame() {
 
     qtdeCartas = Number(prompt('Número de Cartas: (min. 4 / max. 14)'));
-    
+
     if (qtdeCartas % 2 === 0 && 4 <= qtdeCartas && qtdeCartas <= 14) {
+
         createCards(qtdeCartas);
-
-
         cardList.sort(comparador);
 
         function comparador() {
@@ -30,15 +32,19 @@ function playGame() {
         showInHTML();
 
     } else {
+
         alert('Por favor, só números pares entre 4 e 14.');
         playGame();
     }
 }
 
 function winGame() {
+
     if (toWinGame === qtdeCartas) {
+
         alert(`Parabéns, você terminou em ${contadorCardClick} jogadas!`);
         playAgain();
+
     } else {
         return;
     }
@@ -46,34 +52,34 @@ function winGame() {
 
 function playAgain() {
 
-    let answer = prompt('Quer jogar de novo?') 
+    let answer = prompt('Quer jogar de novo?')
 
     if (
-        answer === 'Sim' || 
-        answer === 'sim' || 
-        answer === 'S' || 
-        answer === 's'
-        ) {
-            NumberCards = cardList.length
+        answer === 'Sim' || answer === 'sim' ||
+        answer === 'S' || answer === 's'
+    ) {
+        NumberCards = cardList.length
 
-            contadorCardClick = 0;
-            toWinGame = 0;
+        contadorCardClick = 0;
+        toWinGame = 0;
 
-            for (i=0; i < NumberCards; i++) {
-                const toRemove = document.querySelector('.card');
-                toRemove.remove();
-                cardList.pop();
-            }
+        for (i = 0; i < NumberCards; i++) {
 
-            playGame();
+            const toRemove = document.querySelector('.card');
+            toRemove.remove();
+            cardList.pop();
+        }
+
+        playGame();
+
     } else if (
-        answer === 'Não' ||
-        answer === 'não' ||
-        answer === 'N' ||
-        answer === 'n'
-        ){
-            alert('Obrigado por jogar com a gente!');
+        answer === 'Não' || answer === 'não' ||
+        answer === 'N' || answer === 'n'
+    ) {
+        alert('Obrigado por jogar com a gente!');
+
     } else {
+
         alert('Não entendi. Por favor, responda com "sim" ou "não".');
         playAgain();
     }
@@ -81,10 +87,12 @@ function playAgain() {
 }
 
 function createCards(Number) {
+
     const firstsCards = [];
     const secondsCards = [];
 
     for (i = 0; i < Number / 2; i++) {
+
         const divCard = document.createElement('div');
         divCard.className = 'card';
         divCard.setAttribute(`data-card`, `card${i}`);
@@ -106,6 +114,7 @@ function createCards(Number) {
     }
 
     for (i = 0; i < Number / 2; i++) {
+
         const divCard = document.createElement('div');
         divCard.className = 'card';
         divCard.setAttribute(`data-card`, `card${i}`);
@@ -147,13 +156,16 @@ function flipCard(blabla) {
     pairCard.push(blabla);
 
     if (pairCard.length === 2) {
+
         console.log(pairCard);
         checkPair();
     }
 }
 
 function checkPair() {
+
     if (pairCard[0].dataset.card === pairCard[1].dataset.card) {
+
         pairCard[0].classList.add('disabled');
         pairCard[1].classList.add('disabled');
         toWinGame = toWinGame + 2;
@@ -162,7 +174,9 @@ function checkPair() {
         pairCard.pop();
 
         setTimeout(winGame, 1000);
+
     } else {
+
         setTimeout(() => {
             pairCard[0].classList.remove('flip');
             pairCard[0].children[0].classList.remove("turned");
@@ -179,7 +193,9 @@ function checkPair() {
 }
 
 function showInHTML() {
+
     for (i = 0; i < cardList.length; i++) {
+
         box.appendChild(cardList[i]);
     }
 }
