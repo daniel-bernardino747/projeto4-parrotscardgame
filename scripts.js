@@ -2,8 +2,8 @@ const cards = document.querySelectorAll('.card');
 const box = document.querySelector('.screen');
 let contadorCardClick = 0;
 let pairCard = [];
-let cardList;
-
+let cardList, qtdeCartas;
+let toWinGame = 0;
 startGame();
 
 function startGame() {
@@ -14,9 +14,9 @@ function startGame() {
 
 function playGame() {
 
-    let qtdeCartas = prompt('Número de Cartas: (min. 4 / max. 14)');
+    qtdeCartas = Number(prompt('Número de Cartas: (min. 4 / max. 14)'));
 
-    if (qtdeCartas%2===0 && 4<=qtdeCartas && qtdeCartas<=14) {
+    if (qtdeCartas % 2 === 0 && 4 <= qtdeCartas && qtdeCartas <= 14) {
         createCards(qtdeCartas);
 
         cardList.sort(comparador);
@@ -33,15 +33,23 @@ function playGame() {
     }
 }
 
+function winGame() {
+    if (toWinGame === qtdeCartas) {
+        alert(`Parabéns, você terminou em ${contadorCardClick} jogadas!`);
+    } else {
+        return;
+    }
+}
+
 function createCards(Number) {
     const firstsCards = [];
     const secondsCards = [];
 
-    for (i=0; i < Number/2; i++) {
+    for (i = 0; i < Number / 2; i++) {
         const divCard = document.createElement('div');
         divCard.className = 'card';
-        divCard.setAttribute(`card`, `card${i}`);
-        divCard.setAttribute('onclick','flipCard(this)');
+        divCard.setAttribute(`data-card`, `card${i}`);
+        divCard.setAttribute('onclick', 'flipCard(this)');
 
         const imgFront = document.createElement('img');
         imgFront.className = 'front-card';
@@ -49,7 +57,7 @@ function createCards(Number) {
 
 
         const imgBack = document.createElement('img');
-        imgBack.className = 'front-card';
+        imgBack.className = 'back-card';
         imgBack.src = `./src/${i}.gif`;
 
         divCard.appendChild(imgFront);
@@ -58,11 +66,11 @@ function createCards(Number) {
         firstsCards[i] = divCard;
     }
 
-    for (i=0; i < Number/2; i++) {
+    for (i = 0; i < Number / 2; i++) {
         const divCard = document.createElement('div');
         divCard.className = 'card';
         divCard.setAttribute(`data-card`, `card${i}`);
-        divCard.setAttribute('onclick','flipCard(this)');
+        divCard.setAttribute('onclick', 'flipCard(this)');
 
         const imgFront = document.createElement('img');
         imgFront.className = 'front-card';
@@ -70,7 +78,7 @@ function createCards(Number) {
 
 
         const imgBack = document.createElement('img');
-        imgBack.className = 'front-card';
+        imgBack.className = 'back-card';
         imgBack.src = `./src/${i}.gif`;
 
         divCard.appendChild(imgBack);
@@ -109,9 +117,12 @@ function checkPair() {
     if (pairCard[0].dataset.card === pairCard[1].dataset.card) {
         pairCard[0].classList.add('disabled');
         pairCard[1].classList.add('disabled');
+        toWinGame = toWinGame + 2;
 
         pairCard.pop();
         pairCard.pop();
+
+        setTimeout(winGame, 1000);
     } else {
         setTimeout(() => {
             pairCard[0].classList.remove('flip');
@@ -124,14 +135,12 @@ function checkPair() {
 
             pairCard.pop();
             pairCard.pop();
-          }, 1000);
+        }, 1000);
     }
 }
 
 function showInHTML() {
-    for (i=0; i<cardList.length; i++) {
+    for (i = 0; i < cardList.length; i++) {
         box.appendChild(cardList[i]);
     }
 }
-
-console.log(box)
