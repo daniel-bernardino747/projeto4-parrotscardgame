@@ -78,17 +78,17 @@ img {
     transform: rotateY(-180deg);
   }
   
-  .front-card {
+.front-card {
     transform: rotateY(0deg);
-  }
+}
   
-  .front-card.turned {
+.front-card.turned {
     transform: rotateY(-180deg);
-  }
+}
   
-  .back-card.turned {
+.back-card.turned {
     transform: rotateY(0deg);
-  }
+}
 
 .hidden {
     display: none;

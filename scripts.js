@@ -1,9 +1,11 @@
 const cards = document.querySelectorAll('.card');
 let contadorCardClick = 0;
 let pairCard = [];
+let cardList;
 
 
 function startGame() {
+
     alert('Bem-vindo ao Parrot Card Game, clique "OK" e escolha o número de cartas para jogar.');
     playGame();
 }
@@ -14,11 +16,61 @@ function playGame() {
 
     if (qtdeCartas%2 === 0 && 4<=qtdeCartas && qtdeCartas<=14) {
         alert('passou');
+        createCards(qtdeCartas);
         sortedCards();
     } else {
         alert('Por favor, só números pares entre 4 e 14.');
         playGame();
     }
+}
+
+function createCards(Number) {
+    const firstsCards = [];
+    const secondsCards = [];
+
+    for (i=0; i < Number/2; i++) {
+        const divCard = document.createElement('div');
+        divCard.className = 'card';
+        divCard.setAttribute(`data-card', 'card${i}`);
+        divCard.setAttribute('onclick','flipCard(this)');
+
+        const imgFront = document.createElement('img');
+        imgFront.className = 'front-card';
+        imgFront.src = './src/front.png';
+
+
+        const imgBack = document.createElement('img');
+        imgBack.className = 'front-card';
+        imgBack.src = `./src/${i}.gif`;
+
+        divCard.appendChild(imgFront);
+        divCard.appendChild(imgBack);
+
+        firstsCards[i] = divCard;
+    }
+
+    for (i=0; i < Number/2; i++) {
+        const divCard = document.createElement('div');
+        divCard.className = 'card';
+        divCard.setAttribute(`data-card', 'card${i}`);
+        divCard.setAttribute('onclick','flipCard(this)');
+
+        const imgFront = document.createElement('img');
+        imgFront.className = 'front-card';
+        imgFront.src = './src/front.png';
+
+
+        const imgBack = document.createElement('img');
+        imgBack.className = 'front-card';
+        imgBack.src = `./src/${i}.gif`;
+
+        divCard.appendChild(imgFront);
+        divCard.appendChild(imgBack);
+
+        secondsCards[i] = divCard;
+    }
+    
+    cardList = firstsCards.concat(secondsCards);
 }
 
 function sortedCards() {
