@@ -36,9 +36,43 @@ function playGame() {
 function winGame() {
     if (toWinGame === qtdeCartas) {
         alert(`Parabéns, você terminou em ${contadorCardClick} jogadas!`);
+        playAgain();
     } else {
         return;
     }
+}
+
+function playAgain() {
+
+    let answer = prompt('Quer jogar de novo?') 
+
+    if (
+        answer === 'Sim' || 
+        answer === 'sim' || 
+        answer === 'S' || 
+        answer === 's'
+        ) {
+            NumberCards = cardList.length
+
+            for (i=0; i < NumberCards; i++) {
+                const toRemove = document.querySelector('.card');
+                toRemove.remove();
+                cardList.pop();
+            }
+
+            playGame();
+    } else if (
+        answer === 'Não' ||
+        answer === 'não' ||
+        answer === 'N' ||
+        answer === 'n'
+        ){
+            alert('Obrigado por jogar com a gente!');
+    } else {
+        alert('Não entendi. Por favor, responda com "sim" ou "não".');
+        playAgain();
+    }
+
 }
 
 function createCards(Number) {
