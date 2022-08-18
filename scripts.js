@@ -1,8 +1,29 @@
 const cards = document.querySelectorAll('.card');
-
-let firstCard, secondCard;
 let contadorCardClick = 0;
 let pairCard = [];
+
+
+function startGame() {
+    alert('Bem-vindo ao Parrot Card Game, clique "OK" e escolha o número de cartas para jogar.');
+    playGame();
+}
+
+function playGame() {
+
+    let qtdeCartas = prompt('Número de Cartas: (min. 4 / max. 14)');
+
+    if (qtdeCartas%2 === 0 && 4<=qtdeCartas && qtdeCartas<=14) {
+        alert('passou');
+        sortedCards();
+    } else {
+        alert('Por favor, só números pares entre 4 e 14.');
+        playGame();
+    }
+}
+
+function sortedCards() {
+    return;
+}
 
 function flipCard(blabla) {
 
