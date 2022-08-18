@@ -52,8 +52,8 @@ img {
     border: 1px solid #99CEA8;
     border-radius: 5px;
 
-    transform: scale(1);
-    perspective: 500px;
+    /* transform: scale(1);
+       perspective: 500px; */
 }
 
 .card:active {
@@ -62,19 +62,44 @@ img {
 }
 
 .front-card, .back-card {
-    position: absolute;    
+    position: absolute;
+
+    backface-visibility: hidden; 
+    transform-style: preserve-3d;
+    transition: all 0.5s;
+  
 }
 
-.card.flip, .back-card {
+.card.flip {
     transform: rotateY(180deg);
 }
 
-.back-card, .hidden {
+.back-card {
+    transform: rotateY(-180deg);
+  }
+  
+  .front-card {
+    transform: rotateY(0deg);
+  }
+  
+  .front-card.turned {
+    transform: rotateY(-180deg);
+  }
+  
+  .back-card.turned {
+    transform: rotateY(0deg);
+  }
+
+.hidden {
     display: none;
 }
 
 .unhidden {
     display: initial;
+}
+
+.disabled {
+    pointer-events: none;
 }
 
 @media (max-width: 509px) {
