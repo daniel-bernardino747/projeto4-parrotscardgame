@@ -14,7 +14,10 @@ function flipCard(blabla) {
     blabla.classList.add('flip');
     front.classList.add('turned');
     back.classList.add('turned');
-    /* back.classList.toggle('unhidden'); */
+
+    if (blabla === pairCard[0]) {
+        return;
+    }
 
     pairCard.push(blabla);
 
@@ -29,16 +32,20 @@ function checkPair() {
         pairCard[0].classList.add('disabled');
         pairCard[1].classList.add('disabled');
 
-        checkPair.pop();
-        checkPair.pop();
+        pairCard.pop();
+        pairCard.pop();
     } else {
         setTimeout(() => {
-            blabla.classList.remove('flip');
-            checkPair[0].classList.remove("turned");
-            checkPair[1].classList.remove("turned");
-        
-            /* resetCards(); */
+            pairCard[0].classList.remove('flip');
+            pairCard[0].children[0].classList.remove("turned");
+            pairCard[0].children[1].classList.remove("turned");
+
+            pairCard[1].classList.remove('flip');
+            pairCard[1].children[0].classList.remove("turned");
+            pairCard[1].children[1].classList.remove("turned");
+
+            pairCard.pop();
+            pairCard.pop();
           }, 1000);
     }
 }
-
