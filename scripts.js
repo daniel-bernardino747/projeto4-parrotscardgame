@@ -42,7 +42,16 @@ function winGame() {
 
     if (toWinGame === qtdeCartas) {
 
-        alert(`Parabéns, você terminou em ${contadorCardClick} jogadas!`);
+        const timeMin = document.getElementById('minute').innerText;
+        const timeSec = document.getElementById('second').innerText;
+        const timeMil = document.getElementById('millisecond').innerText;
+
+        if (timeMin === '00') {
+            alert(`Parabéns, você terminou em ${contadorCardClick} jogadas! \nE seu tempo foi:  \n\n${timeSec} segundo(s) e ${timeMil} milisegundo(s)`);
+ 
+        } else {
+            alert(`Parabéns, você terminou em ${contadorCardClick} jogadas! \nE seu tempo foi:  \n\n${timeMin} minuto(s), \n${timeSec} segundo(s) e ${timeMil} milisegundo(s)`);
+        }
         playAgain();
 
     } else {
@@ -198,4 +207,48 @@ function showInHTML() {
 
         box.appendChild(cardList[i]);
     }
+}
+
+// --------------- clock --------------- //
+
+let minute = 0;
+let second = 0;
+let millisecond = 0;
+
+let time;
+
+function start() {
+    time = setInterval(timer, 10);
+}
+
+function timer() {
+
+    if ((millisecond += 10) == 1000) {
+        millisecond = 0;
+        second++;
+    }
+    if (second == 60) {
+        second = 0;
+        minute++;
+    }
+    if (minute == 60) {
+        minute = 0;
+    }
+
+    document.getElementById('minute').innerText = returnTime(minute);
+    document.getElementById('second').innerText = returnTime(second);
+    document.getElementById('millisecond').innerText = returnTime(millisecond);
+}
+
+function returnTime(time) {
+    if (time > 10) {
+        return time;
+    } else {
+        return `0${time}`;
+    }
+}
+
+function show() {
+    const blabla = document.querySelector('.clock').innerText;
+    console.log(blabla)
 }

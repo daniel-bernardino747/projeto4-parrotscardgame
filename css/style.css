@@ -89,3 +89,11 @@ img {
         line-height: 42px;
     }
 }
+
+.clock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    font-size: 30px;
+}

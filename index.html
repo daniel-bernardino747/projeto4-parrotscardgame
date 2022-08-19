@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +12,21 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-<body>
+<body onload="start()">
     <h1>PARROT CARD GAME</h1>
+
+    <div class="clock" onclick="show()">
+        <span id="minute">00</span>:
+        <span id="second">00</span>:
+        <span id="millisecond">000</span>
+    </div>
 
     <div class="screen">
         <!-- As cartas serão criadas dentro do Javascript -->
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="./script_clock.js"></script>
+    <script src="./scripts.js"></script>
 </body>
 
 </html>
